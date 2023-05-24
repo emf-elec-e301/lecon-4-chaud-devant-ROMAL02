@@ -49,6 +49,8 @@
  */
 void main(void)
 {
+    double imp_us;
+    uint16_t dist_mm;
     // initialize the device
     SYSTEM_Initialize();
 
@@ -76,10 +78,74 @@ void main(void)
          *   uint16_t yeux_convertir_impulsion_vers_distance_mm(double largeur_impulsion_us)
          * 
          */
+        yeux_start_mesure();
+        imp_us=yeux_get_largeur_impulsion_us();
+        dist_mm=yeux_convertir_impulsion_vers_distance_mm(imp_us);
         
-
+         if (dist_mm < 100)
+         { 
+            for(int compteur_10kHz = 0; compteur_10kHz < 3000; ++compteur_10kHz )
+            {
+               IO_BUZZER_SetHigh();
+               DELAY_microseconds(50);
+               IO_BUZZER_SetLow();
+               DELAY_microseconds(50);
+                
+            }    
+         }
+         else if (dist_mm < 150)
+         {
+            for(int compteur_7kHz = 0; compteur_7kHz < 2500; ++compteur_7kHz )
+                
+                 {
+               IO_BUZZER_SetHigh();
+               DELAY_microseconds(75);
+               IO_BUZZER_SetLow();
+               DELAY_microseconds(75);
+                
+            }   
+                
+                
+         }
+         else if (dist_mm < 200)
+         {for(int compteur_2kHz = 0; compteur_2kHz < 1750; ++compteur_2kHz )
+             
+        
+        {
+               IO_BUZZER_SetHigh();
+               DELAY_microseconds(250);
+               IO_BUZZER_SetLow();
+               DELAY_microseconds(250);
+                
+            }   
+        }
+        
+        
+         else
+             
+             {     
+             for(int compteur_50Hz = 0; compteur_50Hz < 13; ++compteur_50Hz )
+        
+             {
+               IO_BUZZER_SetHigh();
+               DELAY_microseconds(20000);
+               IO_BUZZER_SetLow();
+               DELAY_microseconds(20000);
+                
+            }
+                 
+        
+        
+        
+        
+         }
+        
+        
+        
+         }
+        
     }
-}
+
 /**
  End of File
 */
