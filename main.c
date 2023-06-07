@@ -128,9 +128,9 @@ void main(void)
         
              {
                IO_BUZZER_SetHigh();
-               DELAY_microseconds(20000);
+               DELAY_microseconds(10000);
                IO_BUZZER_SetLow();
-               DELAY_microseconds(20000);
+               DELAY_microseconds(10000);
                 
             }
                  
